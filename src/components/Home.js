@@ -5,9 +5,9 @@ import Login from './Login'
 
 export default class Home extends React.Component{
     constructor(props){
-        super(props)
-        this.onClickRoom = this.onClickRoom.bind(this)
-        this.onClickLogin = this.onClickLogin.bind(this)
+        super(props);
+        this.onClickLogin = this.onClickLogin.bind(this);
+        this.onLoginSubmit = this.onLoginSubmit.bind(this);
         this.state = {
             curr_view: 'home',
             room: '',
@@ -16,18 +16,29 @@ export default class Home extends React.Component{
             messages: ''}
     }
 
-    onClickRoom(e) {
-
+    onLoginSubmit(e) {
+        e.preventDefault();
+        let email = document.getElementById('login_username').value;
+        let password = document.getElementById('login_password').value;
+        fetch('/authen/logging_in', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+            .then(res => res.json())
+            .then(data => console.log(data.email));
     }
 
     onClickLogin(e) {
-        console.log('aa');
-        function getMessage() {
-            fetch('/authen/login')
-                .then(res => res.json())
-                .then(data => data.messages)
-        }
-        this.setState({curr_view: 'login', messages: getMessage()})
+        fetch('/authen/login')
+            .then(res => res.json())
+            .then(data => this.setState({ messages: data.messages, curr_view: 'login'}));
     }
 
     render() {
@@ -35,8 +46,8 @@ export default class Home extends React.Component{
 
             <div>
                 {this.state.curr_view === 'home' ? (
-                    <LoginButton handleClick={this.onClickLogin()} />) : (
-                        <Login data={this.state}/>
+                    <LoginButton handleClick={() => this.onClickLogin()} />) : (
+                        <Login data={this.state} onLoginSubmit={() => this.onLoginSubmit}/>
                 )}
                 {this.state.curr_view === 'home' &&
                     <RoomList data={this.state}/>
