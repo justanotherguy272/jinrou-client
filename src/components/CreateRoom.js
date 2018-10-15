@@ -8,7 +8,8 @@ export default class CreateRoom extends React.Component {
     render() {
         return(
             <div>
-                <button onClick={this.onCreateRoom.bind(this)}>
+                <button onClick={this.onCreateRoom.bind(this)}
+                        className='genric-btn primary-border circle'>
                     Create Room
                 </button>
             </div>

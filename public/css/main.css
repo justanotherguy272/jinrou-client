@@ -1903,7 +1903,7 @@ nav.hide {
   transform: scale(0);
 }
 
-nav a {
+nav span {
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
@@ -1913,12 +1913,12 @@ nav a {
 }
 
 @media (max-width: 767px) {
-  nav a {
+  nav span {
     margin: 5px 25px;
   }
 }
 
-nav a:hover {
+nav span:hover {
   color: #e0003b;
 }
 
@@ -1926,11 +1926,11 @@ nav a:hover {
   color: #fff;
 }
 
-.white-menubar nav a {
+.white-menubar nav span {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.white-menubar nav a:hover {
+.white-menubar nav span:hover {
   color: white;
 }
 
