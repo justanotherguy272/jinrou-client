@@ -29,7 +29,7 @@ export default class Home extends React.Component{
         let email = document.getElementById('login_username').value;
         let password = document.getElementById('login_password').value;
         console.log('email' + email + 'pass' + password);
-        this.setState({logged_in: true, curr_view: 'home', user: '1'});
+        // this.setState({logged_in: true, curr_view: 'home', user: '1'});
         // fetch('/authen/logging_in', {
         //     method: 'post',
         //     headers: {
@@ -48,24 +48,23 @@ export default class Home extends React.Component{
 
     onSignupSubmit(e) {
         e.preventDefault();
-        let email = document.getElementById('signup_username').value;
+        let name = document.getElementById('signup_username').value;
         let password = document.getElementById('signup_password').value;
-        console.log('Sign Up With Email: ' + email + ' and password ' + password);
-        this.setState({logged_in: true, curr_view: 'home', user: '1'});
-        // fetch('/authen/signing_up', {
-        //     method: 'post',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         email: email,
-        //         password: password
-        //     })
-        // })
-        //     .then(res => console.log(res));
-        // // .then(res => res.json())
-        // // .then(data => console.log(data.email));
+        console.log('Sign Up With Email: ' + name + ' and password ' + password);
+        // this.setState({logged_in: true, curr_view: 'home', user: '1'});
+        fetch('/authen/signing_up', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                password: password
+            })
+        })
+            .then(res => res.json())
+            .then(data => this.setState({curr_view: data.curr_view, logged_in: data.logged_in, user: data.user}))
     };
 
     onClickLogin(e) {
@@ -76,11 +75,11 @@ export default class Home extends React.Component{
     };
 
     onClickSignup(e) {
-        // fetch('/authen/signup')
-        //     .then(res => res.json())
-        //     // .then(data => console.log(data.curr_view))
-        //     .then(data => this.setState({curr_view: data.curr_view}));
-        this.setState({curr_view: 'sign-up-page'});
+        fetch('/authen/signup')
+            .then(res => res.json())
+            // .then(data => console.log(data.curr_view))
+            .then(data => this.setState({curr_view: data.curr_view}));
+        // this.setState({curr_view: 'sign-up-page'});
     };
 
     onClickRoom = (id) => {
@@ -111,7 +110,7 @@ export default class Home extends React.Component{
                     state.logged_in ?
                         (
                             <div>
-                                <p className='text-left'>Hello, .......</p>
+                                <p className='text-left'>Hello, {this.state.user.name}</p>
                                 <RoomList handleClickRoom={this.onClickRoom}/>
                             </div>
 
