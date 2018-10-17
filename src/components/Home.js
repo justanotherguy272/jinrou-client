@@ -2,7 +2,7 @@ import React from 'react'
 import RoomList from './RoomList'
 import LoginButton from './LoginButton'
 import Login from './Login'
-import Signup from './Signup'
+import Signup from './SignUp'
 import SignupButton from "./SignupButton";
 import Header from './Header';
 import InRoom from './InRoom';

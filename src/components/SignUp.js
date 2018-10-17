@@ -1,7 +1,7 @@
-import React from 'react'
-import {Redirect} from 'react-router-dom'
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
-export default class Login extends React.Component {
+export default class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,45 +12,45 @@ export default class Login extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    fetch('/authen/login', {
+    fetch('/authen/sign_up', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: document.getElementById('login_username').value,
-        password: document.getElementById('login_password').value
+        name: document.getElementById('sign_up_username').value,
+        password: document.getElementById('sign_up_password').value
       })
     })
-      // .then(res => this.setState({redirect: res.json().redirect_to}))
       .then(res => res.json())
       .then(data => {
-        this.setState({redirect: data.redirect_to});
+        console.log(data.user);
+        this.setState({redirect: data.redirect_to})
       })
       .catch(err => console.log('error ' + err));
-
   }
 
   render() {
     return (
-      (this.state.redirect !== '') ? (<Redirect to={this.state.redirect} />) :
+      (this.state.redirect !== '') ?
+        ( <Redirect to={this.state.redirect}/>) :
         (
-          <div onClick={this.handleClick}>
-            <h2>Login Page</h2>
+          <div>
+            <h2>Sign Up Page</h2>
             <div className='container'>
               <div className="row">
                 <div className="col align-self-center">
-                  <form method="post" id="login-form" onSubmit={this.handleClick}>
+                  <form method="post" id="signup-form" onSubmit={this.handleClick}>
                     <div className="form-group">
                       <label>Email</label>
-                      <input type="text" className="form-control" name="email" id='login_username'/>
+                      <input type="text" className="form-control" name="email" id='sign_up_username'/>
                     </div>
                     <div className="form-group">
                       <label>Password</label>
-                      <input type="password" className="form-control" name="password" id='login_password'/>
+                      <input type="password" className="form-control" name="password" id='sign_up_password'/>
                     </div>
-                    <button type="submit" className="btn btn-warning btn-lg">Login</button>
+                    <button type="submit" className="btn btn-warning btn-lg">Sign Up</button>
                   </form>
                 </div>
               </div>
