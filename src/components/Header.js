@@ -8,14 +8,18 @@ export default class Header extends React.Component {
     this.homeMenu = this.homeMenu.bind(this);
   }
 
-  // onClickProfile = () => {
-  //   // this.props.onClick('profile');
-  // };
+
+
+  // static getDerivedStateFromProps (props, state) {
+  //   if(props.data !== state) {
+  //     return true
+  //   }
+  //   return false;
+  // }
+
   homeMenu() {
-    console.log('in header' + this.state.authenticated);
-    switch(this.state.authenticated) {
+    switch(this.props.data.authenticated) {
       case true:
-        console.log('in logged');
         return (
           <div>
             <Link to='/profile'>
@@ -52,21 +56,21 @@ export default class Header extends React.Component {
           </div>
           <div className="main-menubar d-flex align-items-center">
             <nav>
-              <Route exact={true} path='/' render={this.homeMenu}/>
+              <Route path='/' render={this.homeMenu}/>
 
-              <Route exact={true} path='/login' render={() => (
-                <div>
-                  <Link to='/'><span>Home</span></Link>
-                  <Link to='/sign_up'><span>Sign Up</span></Link>
-                </div>
-              )}/>
+              {/*<Route exact={true} path='/login' render={() => (*/}
+                {/*<div>*/}
+                  {/*<Link to='/'><span>Home</span></Link>*/}
+                  {/*<Link to='/sign_up'><span>Sign Up</span></Link>*/}
+                {/*</div>*/}
+              {/*)}/>*/}
 
-              <Route exact={true} path='/sign_up' render={() => (
-                <div>
-                  <Link to='/'><span>Home</span></Link>
-                  <Link to='/login'><span>Login</span></Link>
-                </div>
-              )}/>
+              {/*<Route exact={true} path='/sign_up' render={() => (*/}
+                {/*<div>*/}
+                  {/*<Link to='/'><span>Home</span></Link>*/}
+                  {/*<Link to='/login'><span>Login</span></Link>*/}
+                {/*</div>*/}
+              {/*)}/>*/}
             </nav>
           </div>
         </div>

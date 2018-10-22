@@ -1,4 +1,6 @@
 import React from 'react'
+import Room from './RoomList'
+import {Route} from 'react-router-dom'
 
 export default class Index extends React.Component {
   constructor(props) {
@@ -11,15 +13,31 @@ export default class Index extends React.Component {
   }
 
   componentWillMount() {
-    // fetch('/')
-    //     .then(res => this.setState({}))
+    if(this.props.location.state) {
+      this.props.sessionCheck();
+    }
+  }
+
+  renderView() {
+    if(this.props.data.authenticated) {
+      return (
+        <div>
+          <Room />
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          Welcome
+        </div>
+      )
+    }
   }
 
   render() {
-    return (
-      <div style={{background: '#befff7', height: '100px', width: '100%'}}>
-        Hello, world
-      </div>
+    return(
+      this.renderView()
     )
+
   }
 }

@@ -34,7 +34,10 @@ export default class SignUp extends React.Component {
   render() {
     return (
       (this.state.redirect !== '') ?
-        ( <Redirect to={this.state.redirect}/>) :
+        ( <Redirect to={{
+          pathname: this.state.redirect,
+          state: {sessionChecked: false}
+        }}/>) :
         (
           <div>
             <h2>Sign Up Page</h2>

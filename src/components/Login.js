@@ -34,7 +34,10 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      (this.state.redirect !== '') ? (<Redirect to={this.state.redirect} />) :
+      (this.state.redirect !== '') ? (<Redirect to={{
+          pathname: this.state.redirect,
+          state: { sessionChecked: false },
+        }} />) :
         (
           <div onClick={this.handleClick}>
             <h2>Login Page</h2>
