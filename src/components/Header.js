@@ -52,7 +52,9 @@ export default class Header extends React.Component {
       <div className="header-wrap">
         <div className="header-top d-flex justify-content-between align-items-center m-2">
           <div className="logo ml-2">
-            <span style={{fontSize: '2em', color: 'black'}}>Jinrou</span>
+            <nav>
+              <span style={{fontSize: '1.5em'}}>Jinrou</span>
+            </nav>
           </div>
           <div className="main-menubar d-flex align-items-center">
             <nav>
