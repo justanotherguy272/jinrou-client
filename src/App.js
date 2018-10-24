@@ -4,7 +4,7 @@ import './App.css';
 import Index from './components/Index'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
-import {Route, Link} from "react-router-dom";
+import {Route} from "react-router-dom";
 import Header from './components/Header'
 import Logout from './components/Logout'
 import InRoom from "./components/InRoom";

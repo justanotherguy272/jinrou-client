@@ -1,6 +1,6 @@
 import React from 'react'
-import Room from './RoomList'
-import {Route} from 'react-router-dom'
+import RoomList from './RoomList'
+// import {Route} from 'react-router-dom'
 
 export default class Index extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export default class Index extends React.Component {
     if(this.props.data.authenticated) {
       return (
         <div>
-          <Room />
+          <RoomList />
         </div>
       )
     } else {
@@ -38,6 +38,5 @@ export default class Index extends React.Component {
     return(
       this.renderView()
     )
-
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
+import {Grid} from 'semantic-ui-react'
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -39,26 +40,28 @@ export default class Login extends React.Component {
           state: { sessionChecked: false },
         }} />) :
         (
-          <div onClick={this.handleClick}>
-            <h2>Login Page</h2>
-            <div className='container'>
-              <div className="row">
-                <div className="col align-self-center">
-                  <form method="post" id="login-form" onSubmit={this.handleClick}>
-                    <div className="form-group">
-                      <label>Email</label>
-                      <input type="text" className="form-control" name="email" id='login_username'/>
-                    </div>
-                    <div className="form-group">
-                      <label>Password</label>
-                      <input type="password" className="form-control" name="password" id='login_password'/>
-                    </div>
-                    <button type="submit" className="btn btn-warning btn-lg">Login</button>
-                  </form>
+          <Grid centered columns={2}>
+            <Grid.Column>
+              <div onClick={this.handleClick}>
+                <h2 className='text-center'>Login Page</h2>
+                <div className="row">
+                  <div className="col align-items-center">
+                    <form method="post" id="login-form" onSubmit={this.handleClick}>
+                      <div className="form-group">
+                        <label>Email</label>
+                        <input type="text" className="form-control" name="email" id='login_username'/>
+                      </div>
+                      <div className="form-group">
+                        <label>Password</label>
+                        <input type="password" className="form-control" name="password" id='login_password'/>
+                      </div>
+                      <button type="submit" className="btn btn-warning btn-lg w-100">Login</button>
+                    </form>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </Grid.Column>
+          </Grid>
         )
     )
   }

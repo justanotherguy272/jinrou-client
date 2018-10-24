@@ -53,7 +53,9 @@ export default class Header extends React.Component {
         <div className="header-top d-flex justify-content-between align-items-center m-2">
           <div className="logo ml-2">
             <nav>
-              <span style={{fontSize: '1.5em'}}>Jinrou</span>
+              <Link to='/'>
+                <span style={{fontSize: '1.5em'}}>Jinrou</span>
+              </Link>
             </nav>
           </div>
           <div className="main-menubar d-flex align-items-center">
