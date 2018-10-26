@@ -4,11 +4,32 @@ import Role from './Role';
 export default class InRoom extends React.Component {
   constructor(props){
     super(props);
+    let a = this.props.location.pathname;
+    let b = this.props.match.path;
+    let id = a.replace(b, '');
     this.state = {
       redirect: '',
-      roles: []
+      roles: [],
+      capacity: '',
+      leader_id: '',
+      users: [],
+      state: '',
+      id: id
     };
-    this.getRole()
+
+    this.getRoomData();
+    this.getRole();
+  }
+
+  getRoomData() {
+    fetch('/rooms/' + this.state.id)
+      .then(res => res.json())
+      .then(data => this.setState({
+        leader_id: data.room[0].leader_id,
+        capacity: data.room[0].capacity,
+        state: data.room[0]
+      }))
+      .catch(err => console.log(err));
   }
 
   getRole() {
@@ -30,16 +51,14 @@ export default class InRoom extends React.Component {
   }
 
   render() {
-    let a = this.props.location.pathname;
-    let b = this.props.match.path;
-    let s = a.replace(b, '')
     return (
       (this.state.redirect !== '') ? (
         <div>
         </div>
       ) : (
         <div>
-          <p>You're in room {s}</p>
+          <p>You're in room {this.state.id}</p>
+          <p>Capacity: {this.state.room_data}</p>
           {this.renderRole()}
         </div>
       )
