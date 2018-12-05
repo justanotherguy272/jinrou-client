@@ -48,7 +48,7 @@ class App extends Component {
             <Route path='/login' component={Login}/>
             <Route path='/sign_up' component={SignUp}/>
             <Route path='/logout' component={Logout}/>
-            <Route path='/room/' component={InRoom}/>
+            <Route path='/rooms/' render={(props) => <InRoom {...props} user={this.state.user}/>} />
           </div>
         </div>
       );
